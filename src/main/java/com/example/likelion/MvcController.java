@@ -14,24 +14,22 @@ import java.util.Random;
 
 @Controller
 public class MvcController {
-    private int toDayHit = 0;
+    private final LottoService lottoService;
+
+    // 의존성 주입
+    public MvcController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
 
     @RequestMapping("/lotto")
     public String lotto(Model model){
-        List<Integer> lottoList = new ArrayList<>();
-        Random random = new Random();
-        while(lottoList.size() < 6){
-            int randomNumber = random.nextInt(45) + 1; // bound 값은 포함하지 않음으로 0 ~ 44가 된다. 그래서 + 1
-            if(!lottoList.contains(randomNumber)){
-                lottoList.add(randomNumber);
-            }
-        }
-        model.addAttribute("lotto", lottoList);
+
+        model.addAttribute("lotto", lottoService.lotto());
         return "lotto";
     }
     @RequestMapping("/hits")
     public String hits(Model model) {
-        model.addAttribute("hits", ++toDayHit);
+        model.addAttribute("hits", lottoService.addHit());
         return "hits";
     }
 
