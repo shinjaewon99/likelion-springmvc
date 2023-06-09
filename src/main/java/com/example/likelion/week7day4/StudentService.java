@@ -25,4 +25,23 @@ public class StudentService {
         return studentDtoList;
     }
 
+    // Service에서 단일 StudentDto를 주는 메소드를 만들것입니다.
+
+    public StudentDto readStudent(Long id) {
+        // TODO
+        // 여기는 자바 코드 (추후에 변경)
+        for (StudentDto studentDto : studentDtoList) {
+            if(studentDto.getId().equals(id)){
+                return studentDto;
+            }
+        }
+        return null;
+
+//        return studentDtoList
+//                .stream()
+//                .filter(studentDto -> studentDto.getId().equals(id))
+//                .findFirst()
+//                .orElse(null);
+    }
+
 }
