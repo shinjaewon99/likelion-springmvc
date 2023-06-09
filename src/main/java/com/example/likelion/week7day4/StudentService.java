@@ -21,7 +21,7 @@ public class StudentService {
         return newStudent;
     }
 
-    public List<StudentDto> readStudentAll(){
+    public List<StudentDto> readStudentAll() {
         return studentDtoList;
     }
 
@@ -31,7 +31,7 @@ public class StudentService {
         // TODO
         // 여기는 자바 코드 (추후에 변경)
         for (StudentDto studentDto : studentDtoList) {
-            if(studentDto.getId().equals(id)){
+            if (studentDto.getId().equals(id)) {
                 return studentDto;
             }
         }
@@ -43,5 +43,20 @@ public class StudentService {
 //                .findFirst()
 //                .orElse(null);
     }
+
+    public StudentDto updateStudent(Long id, String name, String email) {
+
+        for (StudentDto studentDto : studentDtoList) {
+            if (studentDto.getId().equals(id)) {
+                studentDto.setName(name);
+                studentDto.setEmail(email);
+                return studentDto;
+            }
+
+        }
+        return null;
+    }
+
+
 
 }

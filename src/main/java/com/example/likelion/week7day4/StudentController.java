@@ -54,4 +54,29 @@ public class StudentController {
         );
         return "readStudent";
     }
+
+    @GetMapping("/{id}/update")
+    public String updateView(
+            @PathVariable Long id,
+            Model model){
+
+
+        model.addAttribute("student",
+                studentService.readStudent(id));
+
+        return "update";
+    }
+
+    @PostMapping("{id}/update")
+    public String update(
+            @PathVariable("id") Long id,
+            String name,
+            String email,
+            Model model
+    ){
+
+        model.addAttribute("update",  studentService.updateStudent(id, name, email));
+
+        return "redirect:/{id}";
+    }
 }
