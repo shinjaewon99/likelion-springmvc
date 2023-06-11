@@ -1,21 +1,18 @@
 package com.example.likelion;
 
-import com.example.likelion.model.Student;
+import com.example.likelion.model.StudentDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Controller
 public class MvcController {
     private final LottoService lottoService;
-
+    private int hits = 0;
     // 의존성 주입
     public MvcController(LottoService lottoService) {
         this.lottoService = lottoService;
@@ -29,7 +26,8 @@ public class MvcController {
     }
     @RequestMapping("/hits")
     public String hits(Model model) {
-        model.addAttribute("hits", lottoService.addHit());
+        hits++;
+        model.addAttribute("hits", hits);
         return "hits";
     }
 
@@ -41,10 +39,7 @@ public class MvcController {
 
     @RequestMapping("/student")
     public String student(Model model) {
-        model.addAttribute(
-                "object",
-                new Student("JaeWon Shin", "JaeWonShin@naver.com")
-        );
+
         return "student";
     }
 
@@ -68,11 +63,7 @@ public class MvcController {
 
         model.addAttribute("listOfStrings", listOfStrings);
 
-        List<Student> studentList = Arrays.asList(
-                new Student("Alex", "Alex123@naver.com"),
-                new Student("Tomas", "Tomas123@naver.com"),
-                new Student("Bob", "Bob45@naver.com")
-        );
+
         return "each";
     }
 

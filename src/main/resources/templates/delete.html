@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<h1>Delete Student Name?</h1>
+<form th:action="@{/{id}/delete (id=${student.id})}" method="post">
+  <!-- Delete 삭제는 추가적인 데이터 추가가 필요없음으로 input 추가를 사용하지 않아도됨 -->
+
+    <input type="submit">
+</form>
+<a th:href="@{/{id} (id=${student.id})}">Back</a>
+</body>
+</html>

@@ -29,7 +29,7 @@ public class StudentController {
             String name,
             @RequestParam("email")
             String email
-    ){
+    ) {
         StudentDto studentDto = studentService.makeNewStudent(name, email);
 
         System.out.println(studentDto.toString());
@@ -38,7 +38,7 @@ public class StudentController {
 
 
     @GetMapping("/home")
-    public String home(Model model){
+    public String home(Model model) {
         model.addAttribute("studentList", studentService.readStudentAll());
 
         return "read";
@@ -58,7 +58,7 @@ public class StudentController {
     @GetMapping("/{id}/update")
     public String updateView(
             @PathVariable Long id,
-            Model model){
+            Model model) {
 
 
         model.addAttribute("student",
@@ -70,13 +70,29 @@ public class StudentController {
     @PostMapping("{id}/update")
     public String update(
             @PathVariable("id") Long id,
-            String name,
-            String email,
+            @RequestParam String name,
+            @RequestParam String email,
             Model model
-    ){
+    ) {
 
-        model.addAttribute("update",  studentService.updateStudent(id, name, email));
+        model.addAttribute("update", studentService.updateStudent(id, name, email));
 
         return "redirect:/{id}";
+    }
+
+    @GetMapping({"{id}/delete"})
+    public String deleteView(
+            @PathVariable("id") Long id, Model model
+    ) {
+        model.addAttribute("student", studentService.readStudent(id));
+        return "delete";
+    }
+
+    @PostMapping("{id}/delete")
+    public String delete(
+            @PathVariable("id") Long id
+    ) {
+        studentService.deleteStudent(id);
+        return "redirect:home";
     }
 }

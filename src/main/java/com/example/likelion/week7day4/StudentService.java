@@ -57,6 +57,13 @@ public class StudentService {
         return null;
     }
 
-
-
+    public boolean deleteStudent(Long id) {
+        for (StudentDto studentDto : studentDtoList) {
+            if (studentDto.getId().equals(id)) {
+                studentDtoList.remove(id);
+                return true;
+            }
+        }
+        return false;
+    }
 }

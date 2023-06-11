@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Update Student</h1>
-<form action="@{/{id}/update (id=${student.id})}" method="post">
+<form th:action="@{/{id}/update (id=${student.id})}" method="post">
 
     <label for="name-input">Name: <input id="name-input" name="name" th:value="${student.name}"></label>
     <br>
