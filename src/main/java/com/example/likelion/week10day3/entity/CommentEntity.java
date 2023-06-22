@@ -11,10 +11,10 @@ public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private Long articleId;
+    private Long articleId;
     private String writer;
     private String content;
 
-    @ManyToOne
-    private ArticleEntity articleEntity;
+//    @ManyToOne
+//    private ArticleEntity articleEntity;
 }

@@ -80,7 +80,7 @@ public class CommentService {
 
 
     // TODO 게시글 댓글 삭제
-    public void deleteComment(Long articleId, Long commentId) {
+    public CommentDto deleteComment(Long articleId, Long commentId) {
 
         Optional<CommentEntity> optionalComment
                 = commentRepository.findById(commentId); // 댓글의 Id를 찾는다.
@@ -96,6 +96,7 @@ public class CommentService {
         }
 
         commentRepository.deleteById(commentId);
+        return null;
     }
 
 
