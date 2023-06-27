@@ -16,7 +16,8 @@ public class LoggingAspect {
     // @Before : Advice, 실제로 실행될 코드를 나타냄
     // @Before.value : Pointcut Designator, 어느 조인포인터에서
     // 실행될것인지
-    @Before("this(com.example.likelion.week11day2.controller.AopController)")
+//    @Before("this(com.example.likelion.week11day2.controller.AopController)")
+    @Before("@annotation(com.example.likelion.week11day2.aspect.LogArguments)")
     public void logParameters(JoinPoint joinPoint) {
 //        log.info("hello aop !");
 
